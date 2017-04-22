@@ -3,11 +3,12 @@ function HUD(game) {
 	this.player = null;
 	this.map = null;
 	this.music = null;
-
+  this.spriteBG = null;
 };
 
 HUD.prototype.create = function create() {
 
+   this.spriteBG = this.game.add.tileSprite(0, 0, 800, 600, 'background');
 	 this.player = new Player(this.game);
    this.player.create();
   // this.music = game.add.audio('gameSound', 1, true);
