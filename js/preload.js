@@ -12,7 +12,7 @@ preload.prototype = {
 		this.game.load.image('background', 'assets/img/game_background.jpg');
 		this.game.load.image('gameover', 'assets/img/gameover.png');
 
-		this.game.load.image('buttonWarrior', 'assets/img/ButtonWarrior.jpg');
+		this.game.load.image('buttonWarrior', 'assets/img/ButtonWarrior.png');
 		this.game.load.image('buttonArcher', 'assets/img/ButtonArcher.png');
 		//Mur
 
@@ -23,7 +23,7 @@ preload.prototype = {
      		game.load.audio('introSound', 'assets/sound/intro.mp3');
      		game.load.audio('loseSound', 'assets/sound/loose.mp3');
   	   	game.load.audio('explosionSound', 'assets/sound/explodeSound.mp3');
-  	  	game.load.audio('deathSound', 'assets/sound/sound_death.mp3');
+  	  	//game.load.audio('deathSound', 'assets/sound/sound_death.mp3');
 
 
 	},
