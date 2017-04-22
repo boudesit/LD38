@@ -1,19 +1,25 @@
 function HUD(game) {
 	this.game = game;
-	this.HUDSprite = null;
-  this.textHUD = null;
-  this.enemy = null;
-  this.hero = null;
-  this.wavesManager = null;
-	this.lives = null;
-	this.score = 0;
-	this.scoreText = '';
+	this.player = null;
+	this.computer = null;
 	this.map = null;
-		this.music = null;
+  this.music = null;
+	this.music = null;
+  this.spriteBG = null;
 };
 
 HUD.prototype.create = function create() {
 
+   this.spriteBG = this.game.add.tileSprite(0, 0, 800, 600, 'background');
+
+	 this.player = new Player(this.game);
+   this.player.create();
+
+	 this.computer = new Computer(this.game);
+   this.computer.create();
+
+	 this.map = new map(this.game);
+ 	 this.map.create();
   // this.music = game.add.audio('gameSound', 1, true);
 	// if (this.music.isPlaying == false)
 	// {
@@ -21,7 +27,7 @@ HUD.prototype.create = function create() {
 	// }else{
 	// 	this.music.resume();
 	// }
-	// this.spriteBG = this.game.add.tileSprite(0, 0, 800, 600, 'background');
+
 	// this.spriteBG.animations.add('backgroundAnime');
 	// this.spriteBG.animations.play('backgroundAnime', 10, true);
 	//
@@ -60,7 +66,17 @@ HUD.prototype.create = function create() {
 
 
 HUD.prototype.update = function update() {
-  //  this.hero.update();
+  this.player.update();
+	this.computer.update();
+
+	//  Run collision
+	game.physics.arcade.collide(  this.player.getPlayerUnitGroup() , this.player.getPlayerUnitGroup()  , null, null, this);
+	game.physics.arcade.collide(  this.computer.getComputerUnitGroup() , this.computer.getComputerUnitGroup()  , null, null, this);
+
+	game.physics.arcade.overlap(  this.player.getPlayerUnitGroup() , this.computer.getComputerUnitGroup() , this.fight, null, this);
+	//
+
+
   //  this.wavesManager.update();
   //  this.enemy.update();
 	 //
@@ -134,23 +150,22 @@ HUD.prototype.update = function update() {
 //
 //
 //
-// HUD.prototype.enemyHitHero = function enemyHitHero(hero,enemy) {
-//
-// 	enemy.kill();
-//
-// 	live = this.lives.getFirstAlive();
-//
-// 	if (live)
-// 	{
-// 			live.kill();
-// 	}
-//
-// 	if(this.hero._heroIsHit() == 0){
-// 			 //Lose
-// 			 this.music.pause();
-// 			 this.lose();
-// 	}
-// };
+HUD.prototype.fight = function fight(player,computer) {
+
+	while (player.life > 0 || computer.life > 0)
+	{
+		player.life -= computer.damage;
+		computer.life -= player.damage;
+	}
+
+	if(player.life <= 0){
+		player.kill();
+	}
+
+	if(computer.life <= 0){
+		computer.kill();
+	}
+};
 //
 // HUD.prototype.lose = function lose() {
 // 	this.game.scoreTotal = 	this.score;
