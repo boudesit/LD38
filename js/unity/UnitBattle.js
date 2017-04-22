@@ -1,39 +1,39 @@
-function Enemy(game, type) {
+function UnitBattle(game, type) {
 	this.game = game;
-	this.enemy = null;
+	this.unit = null;
 	this.isDead = null;
 	this.type = type;
 };
 
 
 
-Enemy.prototype.create = function create() {
-	this.createEnemy();
+UnitBattle.prototype.create = function create() {
+	this.createUnitBattle();
 };
 
-Enemy.prototype.update = function update() {
-	this.enemy.update();
+UnitBattle.prototype.update = function update() {
+	this.unit.update();
 };
 
-Enemy.prototype.die = function die() {
-	this.enemy.die();
+UnitBattle.prototype.die = function die() {
+	this.unit.die();
 };
 
-Enemy.prototype.getSprite = function getSprite() {
-	return this.enemy.getSprite();
+UnitBattle.prototype.getSprite = function getSprite() {
+	return this.unit.getSprite();
 };
 
-Enemy.prototype.createEnemy = function createEnemy(){
+UnitBattle.prototype.createUnitBattle = function createUnitBattle(){
 	if(this.type === "Warrior"){
-		this.enemy = new Warrior(this.game);
-		this.enemy.create();
+		this.unit = new Warrior(this.game);
+		this.unit.create();
 	}else if(this.type === "Archer"){
-		this.enemy = new Archer(this.game);
-		this.enemy.create();
+		this.unit = new Archer(this.game);
+		this.unit.create();
   }
 };
 
-Enemy.prototype.chooseDoor = function chooseDoor(){
+UnitBattle.prototype.chooseDoor = function chooseDoor(){
 	if(this.door === "door1"){
 		return door1;
 	}else if(this.door === "door2"){
@@ -45,6 +45,6 @@ Enemy.prototype.chooseDoor = function chooseDoor(){
 	}
 };
 
-Enemy.prototype.destroy = function destroy() {
-	this.enemy.destroy();
+UnitBattle.prototype.destroy = function destroy() {
+	this.unit.destroy();
 };
