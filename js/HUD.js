@@ -6,16 +6,24 @@ function HUD(game) {
   this.music = null;
 =======
 	this.music = null;
+<<<<<<< HEAD
+  this.spriteBG = null;
+=======
 
+>>>>>>> origin/development
 >>>>>>> origin/development
 };
 
 HUD.prototype.create = function create() {
 
 <<<<<<< HEAD
+   this.spriteBG = this.game.add.tileSprite(0, 0, 800, 600, 'background');
+=======
+<<<<<<< HEAD
 this.
 
 =======
+>>>>>>> origin/development
 	 this.player = new Player(this.game);
    this.player.create();
 >>>>>>> origin/development
