@@ -6,6 +6,7 @@ function HUD(game) {
   this.music = null;
 	this.music = null;
   this.spriteBG = null;
+	this.fight = null;
 };
 
 HUD.prototype.create = function create() {
@@ -73,7 +74,7 @@ HUD.prototype.update = function update() {
 	game.physics.arcade.collide(  this.player.getPlayerUnitGroup() , this.player.getPlayerUnitGroup()  , null, null, this);
 	game.physics.arcade.collide(  this.computer.getComputerUnitGroup() , this.computer.getComputerUnitGroup()  , null, null, this);
 
-	game.physics.arcade.overlap(  this.player.getPlayerUnitGroup() , this.computer.getComputerUnitGroup() , this.fight, null, this);
+	game.physics.arcade.overlap(  this.player.getPlayerUnitGroup() , this.computer.getComputerUnitGroup() , this.computeFight, null, this);
 	//
 
 
@@ -150,21 +151,10 @@ HUD.prototype.update = function update() {
 //
 //
 //
-HUD.prototype.fight = function fight(player,computer) {
+HUD.prototype.computeFight = function computeFight(player,computer) {
 
-	while (player.life > 0 || computer.life > 0)
-	{
-		player.life -= computer.damage;
-		computer.life -= player.damage;
-	}
-
-	if(player.life <= 0){
-		player.kill();
-	}
-
-	if(computer.life <= 0){
-		computer.kill();
-	}
+		this.fight = new Fight(this.game, player, computer);
+		this.fight.create();
 };
 //
 // HUD.prototype.lose = function lose() {
