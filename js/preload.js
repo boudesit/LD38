@@ -12,6 +12,9 @@ preload.prototype = {
 		this.game.load.image('background', 'assets/img/game_background.jpg');
 		this.game.load.image('gameover', 'assets/img/gameover.png');
 
+		this.game.load.spritesheet('Dindon', 'assets/img/dindon2.png', 22, 20,3);
+		this.game.load.spritesheet('Canard', 'assets/img/canard2.png', 22, 20,3);
+
 		this.game.load.image('buttonWarrior', 'assets/img/ButtonWarrior.png');
 		this.game.load.image('buttonArcher', 'assets/img/ButtonArcher.png');
 		this.game.load.image('spriteCastlePlay', 'assets/img/CastlePlayer.png');

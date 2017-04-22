@@ -14,15 +14,19 @@ Player.prototype = {
 	},
 
 	update: function() {
-
-
+		this.unityManager.update();
 	},
 
 	actionOnArcher: function() {
+
+		this.unityManager.setUnitType("Archer");
+		this.unityManager.isCreate(true);
 		console.log("Button Archer clicker");
 	},
 
 	actionOnWarrior: function() {
+		this.unityManager.setUnitType("Warrior");
+		this.unityManager.isCreate(true);
 		console.log("Button Warrior clicker");
 	}
 }
