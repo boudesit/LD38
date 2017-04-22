@@ -30,6 +30,7 @@ Enemy.prototype.createEnemy = function createEnemy(){
 	}else if(this.type === "Archer"){
 		this.enemy = new Archer(this.game);
 		this.enemy.create();
+  }
 };
 
 Enemy.prototype.chooseDoor = function chooseDoor(){
@@ -42,7 +43,7 @@ Enemy.prototype.chooseDoor = function chooseDoor(){
 	}else if(this.door === "door4"){
 		return door4;
 	}
-}
+};
 
 Enemy.prototype.destroy = function destroy() {
 	this.enemy.destroy();
