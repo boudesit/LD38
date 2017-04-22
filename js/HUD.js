@@ -2,15 +2,31 @@ function HUD(game) {
 	this.game = game;
 	this.player = null;
 	this.map = null;
+<<<<<<< HEAD
+  this.music = null;
+=======
 	this.music = null;
+<<<<<<< HEAD
   this.spriteBG = null;
+=======
+
+>>>>>>> origin/development
+>>>>>>> origin/development
 };
 
 HUD.prototype.create = function create() {
 
+<<<<<<< HEAD
    this.spriteBG = this.game.add.tileSprite(0, 0, 800, 600, 'background');
+=======
+<<<<<<< HEAD
+this.
+
+=======
+>>>>>>> origin/development
 	 this.player = new Player(this.game);
    this.player.create();
+>>>>>>> origin/development
   // this.music = game.add.audio('gameSound', 1, true);
 	// if (this.music.isPlaying == false)
 	// {
@@ -18,7 +34,7 @@ HUD.prototype.create = function create() {
 	// }else{
 	// 	this.music.resume();
 	// }
-	// this.spriteBG = this.game.add.tileSprite(0, 0, 800, 600, 'background');
+	 this.spriteBG = this.game.add.tileSprite(0, 0, 800, 600, 'background');
 	// this.spriteBG.animations.add('backgroundAnime');
 	// this.spriteBG.animations.play('backgroundAnime', 10, true);
 	//
