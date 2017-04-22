@@ -11,6 +11,7 @@ UnityManager.prototype.create = function create() {
 };
 
 UnityManager.prototype.update = function update() {
+
 	if(this.unitType != null && this.iscreate === true) {
 
 		this.unitBattle = new UnitBattle(this.game, this.unitType);
