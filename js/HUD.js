@@ -20,6 +20,9 @@ HUD.prototype.create = function create() {
 
 	 this.map = new map(this.game);
  	 this.map.create();
+
+	 this.explosionSound = game.add.audio('explosionSound');
+ 	 this.explosion  = game.add.sprite(-100,-100, 'explosion');
   // this.music = game.add.audio('gameSound', 1, true);
 	// if (this.music.isPlaying == false)
 	// {
@@ -74,37 +77,21 @@ HUD.prototype.update = function update() {
 	game.physics.arcade.collide(  this.computer.getComputerUnitGroup() , this.computer.getComputerUnitGroup()  , null, null, this);
 
 	game.physics.arcade.overlap(  this.player.getPlayerUnitGroup() , this.computer.getComputerUnitGroup() , this.fight, null, this);
+	game.physics.arcade.overlap(  this.player.getPlayerUnitGroup() , this.computer.getComputerCastle() , this.playerHitCastle, null, this);
+	game.physics.arcade.overlap(  this.computer.getComputerUnitGroup() , this.player.getPlayerCastle() , this.computerHitCastle, null, this);
 	//
 
+	if (this.shakeWorld > 0)
+	{
+		var rand1 = game.rnd.integerInRange(-5,5);
+		var rand2 = game.rnd.integerInRange(-5,5);
+		game.world.setBounds(rand1, rand2, game.width + rand1, game.height + rand2);
+		this.shakeWorld--;
+	}
 
-  //  this.wavesManager.update();
-  //  this.enemy.update();
-	 //
-	//   if (this.shakeWorld > 0)
-	//   {
-	//   	var rand1 = game.rnd.integerInRange(-5,5);
-	//   	var rand2 = game.rnd.integerInRange(-5,5);
-	//   	game.world.setBounds(rand1, rand2, game.width + rand1, game.height + rand2);
-	//  	  this.shakeWorld--;
-	//   }
-	 //
-	//   if (this.shakeWorld == 0) {
-	//   	game.world.setBounds(0, 0, game.width,game.height);
-	//   }
-	 //
-	//  //MurHBG
- // 	 this.game.physics.arcade.collide(   this.map._getMur() , this.hero._getSprite()  , null , null, this);
-	//  this.game.physics.arcade.collide(   this.map._getMur() , this.enemy._getEnemyGroup()   , null , null, this);
-	 //
-	//  this.game.physics.arcade.collide(   this.map._getMur() , this.hero._getWeapons1()   , this.destroyBullet , null, this);
-	//  this.game.physics.arcade.collide(   this.map._getMur() , this.hero._getWeapons2()   , this.destroyBullet , null, this);
-	 //
-	//  //  Run collision
-	//  game.physics.arcade.overlap(  this.hero._getWeapons1() , this.enemy._getEnemyGroup()  , this.fire1HitEnemy, null, this);
-	//  game.physics.arcade.overlap(  this.hero._getWeapons2() , this.enemy._getEnemyGroup()  , this.fire2HitEnemy, null, this);
-	//  game.physics.arcade.collide(  this.enemy._getEnemyGroup() , this.enemy._getEnemyGroup() , null, null, this);
-	//  game.physics.arcade.overlap(  this.enemy._getEnemyGroup() , this.hero._getSprite()  , this.enemyHitHero, null, this);
-	 //
+	if (this.shakeWorld == 0) {
+		game.world.setBounds(0, 0, game.width,game.height);
+	}
 };
 
 
@@ -166,6 +153,38 @@ HUD.prototype.fight = function fight(player,computer) {
 		computer.kill();
 	}
 };
+
+HUD.prototype.playerHitCastle = function playerHitCastle(player,computerCastle) {
+
+		computerCastle.life -= player.damage;
+		this.shakeWorld = 5;
+
+		if(computerCastle.life <= 0) {
+		 		 this.explosion.reset(computerCastle.body.x, computerCastle.body.y + 50);
+		 		 this.explosion.animations.add('boom');
+		 		 this.explosion.play('boom', 30, false , true);
+				 this.explosionSound.play();
+		 		 computerCastle.kill();
+		}
+
+};
+
+
+HUD.prototype.computerHitCastle = function computerHitCastle(computer,playerCastle) {
+
+		playerCastle.life -= computer.damage;
+		this.shakeWorld = 5;
+
+		if(playerCastle.life <= 0) {
+		 		 this.explosion.reset(playerCastle.body.x, playerCastle.body.y - 50);
+		 		 this.explosion.animations.add('boom');
+		 		 this.explosion.play('boom', 30, false , true);
+				 this.explosionSound.play();
+		 		 playerCastle.kill();
+		}
+
+};
+
 //
 // HUD.prototype.lose = function lose() {
 // 	this.game.scoreTotal = 	this.score;

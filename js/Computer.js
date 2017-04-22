@@ -8,7 +8,7 @@ var Computer = function(game) {
 	this.uptime = true;
 	this.rand = null;
 	this.timer = null;
-	this.ComputerUnitGroup = null;
+	this.computerUnitGroup = null;
 }
 
 Computer.prototype = {
@@ -38,7 +38,7 @@ Computer.prototype = {
 
 	update: function() {
     this.unityManager.update();
-		this.ComputerUnitGroup = this.unityManager._getUnitGroup();
+		this.computerUnitGroup = this.unityManager._getUnitGroup();
 	},
 
 	randomCreateUnit: function() {
@@ -72,6 +72,10 @@ Computer.prototype = {
 		},
 
 		getComputerUnitGroup: function() {
-			return this.ComputerUnitGroup;
+			return this.computerUnitGroup;
+		},
+
+		getComputerCastle: function() {
+			return this.castle.getSprite();
 		}
 }
