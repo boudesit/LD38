@@ -1,114 +1,49 @@
-var UnitBattle = function(game) {
+function Enemy(game, type) {
 	this.game = game;
-	this.currentSpeed = -500;
-	this.upSpeed = -5;
-	this.currentEnemy = null;
-	this.outOfGamePos = 50;
-	this.spawnClock = null;
-	this.maxSpeed = -1200;
-	this.enemiesOut = 0;
-}
+	this.enemy = null;
+	this.isDead = null;
+	this.type = type;
+};
 
-UnitBattle.prototype = {
-    create: function() {
-		// random enemy
-		var random = (this._randomIntFromInterval(1,4)-1);
-		this.currentEnemy = new Enemy(game, this.currentSpeed, this._randomType(), random);
-		this.currentEnemy.create();
-		this.spawnClock = new SpawnClock(game);
-		this.enemiesOut = 0;
-    },
 
-    update: function() {
-		if (this._isEnemyDead() && !this._isSpriteDestroy()) {
-			this._killEnemy();
-		}else if (this._OutOfGamePosition()) {
-			this._destroyEnemy();
-		}else {
-			this.currentEnemy.update();
-		}
-		this._startSpawnClock();
 
-		this._initEnemyAndStopClock();
+Enemy.prototype.create = function create() {
+	this.createEnemy();
+};
 
-		if (this.currentEnemy.getEnemiesOut() > 0) {
-			this.currentEnemy.setEnemiesOut(this.currentEnemy.getEnemiesOut() - 1);
-			this.enemiesOut++;
-		}
-    },
+Enemy.prototype.update = function update() {
+	this.enemy.update();
+};
 
-	_initEnemyAndStopClock : function () {
-		if(this.spawnClock.isSpawnAllowed == true) {
-			this._initEnemy();
-			this.spawnClock.stopTimer();
-		}
-	},
+Enemy.prototype.die = function die() {
+	this.enemy.die();
+};
 
-	_startSpawnClock : function () {
-		if (this.spawnClock.isRunning == false) {
-			this.spawnClock.startTimer();
-		}
-	},
+Enemy.prototype.getSprite = function getSprite() {
+	return this.enemy.getSprite();
+};
 
-	_destroyEnemy : function () {
+Enemy.prototype.createEnemy = function createEnemy(){
+	if(this.type === "Warrior"){
+		this.enemy = new Warrior(this.game);
+		this.enemy.create();
+	}else if(this.type === "Archer"){
+		this.enemy = new Archer(this.game);
+		this.enemy.create();
+};
 
-		//TODO Changer la condition a cause du update c'est lancer plein de foit
-		this.currentEnemy.destroy();
-	},
-
-	_killEnemy : function () {
-
-		//TODO Changer la condition a cause du update c'est lancer plein de foit
-
-		this.currentEnemy.kill();
-	},
-
-	_initEnemy : function() {
-		this._upCurrentSpeed();
-		this.game.currentSpeed = this.currentSpeed;
-		this.currentEnemy = new Enemy(game, this.currentSpeed, this._randomType(), (this._randomIntFromInterval(1,4)-1));
-		this.currentEnemy.create();
-		this.currentEnemy.update();
-	},
-
-	_upCurrentSpeed : function() {
-		if (this.currentSpeed > (this.maxSpeed -1)) {
-			this.currentSpeed += this.upSpeed;
-		} else {
-			this.currentSpeed = this.maxSpeed;
-		}
-	},
-
-	getEnemy: function() {
-		return this.currentEnemy;
-	},
-
-	_isEnemyDead : function() {
-		return (this.currentEnemy.isDead == true);
-	},
-
-	_OutOfGamePosition : function() {
-		return (this.currentEnemy.getPosX() <= this.outOfGamePos);
-	},
-
-	_isSpriteDestroy: function() {
-		return this.currentEnemy.getIsSpriteDestroy();
-	},
-
-	_randomType : function() {
-		return (this._randomIntFromInterval(1, 3) - 1);
-	},
-
-	_randomIntFromInterval : function(min, max) {
-		return Math.floor(Math.random() * (max - min + 1) + min);
-	},
-
-	_explode : function(min, max) {
-
-	},
-
-	_getEnemiesOut : function() {
-		return this.enemiesOut;
+Enemy.prototype.chooseDoor = function chooseDoor(){
+	if(this.door === "door1"){
+		return door1;
+	}else if(this.door === "door2"){
+		return door2;
+	}else if(this.door === "door3"){
+		return door3;
+	}else if(this.door === "door4"){
+		return door4;
 	}
-
 }
+
+Enemy.prototype.destroy = function destroy() {
+	this.enemy.destroy();
+};
