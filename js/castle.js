@@ -1,10 +1,10 @@
-function castle(game , castleArmee) {
+function Castle(game , castleArmee) {
 	this.life = 10;
   this.dead = false;
 	this.castleArmee = castleArmee;
 };
 
-castle.prototype.create = function create() {
+Castle.prototype.create = function create() {
 	if(this.castleArmee === 'player')
 	{
    	 game.add.sprite(50, 400, 'spriteCastlePlay')
@@ -17,9 +17,9 @@ castle.prototype.create = function create() {
 
 };
 
-castle.prototype.getSprite = function getSprite() {
+Castle.prototype.getSprite = function getSprite() {
 	return this.castleSprite;
 };
 
-castle.prototype.update = function update() {
+Castle.prototype.update = function update() {
 };
