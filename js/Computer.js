@@ -1,9 +1,9 @@
 var Computer = function(game) {
 	this.game = game;
 	this.unityManager = null;
-  this.food = null;
-  this.water = null;
-  this.rock = null;
+	this.food = 100;
+	this.water = 100;
+	this.rock = 100;
   this.castle = null;
 	this.uptime = true;
 	this.rand = null;
@@ -13,9 +13,7 @@ var Computer = function(game) {
 
 Computer.prototype = {
   	create: function() {
-      this.food = 100;
-      this.water = 50;
-      this.rock = 10;
+
 			this.unityManager = new UnityManager(this.game, "computer");
 
 			this.castle = new Castle(this.game, "computer");
@@ -44,10 +42,10 @@ Computer.prototype = {
 	randomCreateUnit: function() {
 		this.rand = this.getRandomIntInclusive(0 , 1);
 
-			if( this.rand === 0) {
+			if( this.rand === 0 && this.buy("Archer")) {
 				this.actionOnArcher();
 			}
-			else {
+			if(this.rand === 1 && this.buy("Warrior")) {
 				this.actionOnWarrior();
 			}
 			this.uptime = true;
@@ -77,5 +75,26 @@ Computer.prototype = {
 
 		getComputerCastle: function() {
 			return this.castle.getSprite();
+		},
+
+		buy: function(type) {
+		isbuy = false;
+		// For Archer
+		if(this.food >= 20 && this.water >= 10 && this.rock >= 5 && type === "Archer") {
+			this.food -= 20;
+			this.water -= 10;
+			this.rock -= 5;
+			isbuy = true;
 		}
+
+		// For Warrior
+		if(this.food >= 30 && this.water >= 15 && this.rock >= 10 && type === "Warrior") {
+			this.food -= 30;
+			this.water -= 15;
+			this.rock -= 10;
+			isbuy = true;
+		}
+		return isbuy;
+
+	}
 }
