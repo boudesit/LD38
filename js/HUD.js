@@ -1,7 +1,7 @@
 function HUD(game) {
 	this.game = game;
 	this.player = null;
-	this.Computer = null;
+	this.computer = null;
 	this.map = null;
   this.music = null;
 	this.music = null;
@@ -15,8 +15,8 @@ HUD.prototype.create = function create() {
 	 this.player = new Player(this.game);
    this.player.create();
 
-	 this.Computer = new Computer(this.game);
-   this.Computer.create();
+	 this.computer = new Computer(this.game);
+   this.computer.create();
 
 	 this.map = new map(this.game);
  	 this.map.create();
@@ -67,6 +67,7 @@ HUD.prototype.create = function create() {
 
 HUD.prototype.update = function update() {
   this.player.update();
+	this.computer.update();
   //  this.wavesManager.update();
   //  this.enemy.update();
 	 //
