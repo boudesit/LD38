@@ -4,7 +4,7 @@ function Warrior(game, unitClans) {
 	this.warriorSprite = null;
   this.dead = false;
 	if(unitClans === "player") {
-		this.velocityX = 20;
+		this.velocityX = 60;
 		this.posX = 100;
 	} else {
 		this.velocityX = -20;
