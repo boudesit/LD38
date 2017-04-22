@@ -83,7 +83,10 @@ HUD.prototype.update = function update() {
 
 	game.physics.arcade.overlap(  this.player.getPlayerUnitGroup() , this.computer.getComputerUnitGroup() , this.computeFight, null, this);
 
-	//
+	if(this.fight != null && this.fight.isFinnish()) {
+		this.player.getPlayerUnitGroup().setAll("body.velocity.x", 60);
+		this.computer.getComputerUnitGroup().setAll("body.velocity.x", -60);
+	}
 
 	if (this.shakeWorld > 0)
 	{
