@@ -1,19 +1,15 @@
 function HUD(game) {
 	this.game = game;
-	this.HUDSprite = null;
-  this.textHUD = null;
-  this.enemy = null;
-  this.hero = null;
-  this.wavesManager = null;
-	this.lives = null;
-	this.score = 0;
-	this.scoreText = '';
+	this.player = null;
 	this.map = null;
-		this.music = null;
+	this.music = null;
+
 };
 
 HUD.prototype.create = function create() {
 
+	 this.player = new Player(this.game);
+   this.player.create();
   // this.music = game.add.audio('gameSound', 1, true);
 	// if (this.music.isPlaying == false)
 	// {
@@ -60,7 +56,7 @@ HUD.prototype.create = function create() {
 
 
 HUD.prototype.update = function update() {
-  //  this.hero.update();
+  this.player.update();
   //  this.wavesManager.update();
   //  this.enemy.update();
 	 //
