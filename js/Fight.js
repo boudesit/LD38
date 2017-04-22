@@ -2,6 +2,7 @@ function Fight(game, player, computer) {
 	this.game = game;
 	this.player = player;
 	this.computer = computer;
+  this.finnish = false;
 };
 
 Fight.prototype.create = function create() {
@@ -25,11 +26,17 @@ Fight.prototype.fight = function fight() {
 
 	if(this.player.life <= 0){
 		this.player.kill();
+    this.finnish = true;
 	}
 
 	if(this.computer.life <= 0){
 		this.computer.kill();
+    this.finnish = true;
 	}
+};
+
+Fight.prototype.isFinnish = function isFinnish() {
+  return this.finnish;
 };
 //
 // Fight.prototype.lose = function lose() {

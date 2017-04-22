@@ -7,7 +7,7 @@ function Archer(game, unitClans) {
 		this.velocityX = 60;
 		this.posX = 100;
 	} else {
-		this.velocityX = -20;
+		this.velocityX = -60;
 		this.posX = 700;
 	}
 };
