@@ -42,7 +42,7 @@ Enemy.prototype.chooseDoor = function chooseDoor(){
 	}else if(this.door === "door4"){
 		return door4;
 	}
-}
+};
 
 Enemy.prototype.destroy = function destroy() {
 	this.enemy.destroy();
