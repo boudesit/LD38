@@ -1,9 +1,11 @@
-function Archer(game, velocity, door, heroSprite) {
+function Archer(game) {
 	this.life = 1;
   this.dead = false;
 };
 
 Archer.prototype.create = function create() {
+
+	console.log("coucou je suis un archer");
 };
 
 Archer.prototype.getSprite = function getSprite() {
