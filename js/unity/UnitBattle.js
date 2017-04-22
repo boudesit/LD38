@@ -1,4 +1,4 @@
-function Enemy(game, velocity, type, door, heroSprite) {
+function Enemy(game, type) {
 	this.game = game;
 	this.enemy = null;
 	this.isDead = null;
