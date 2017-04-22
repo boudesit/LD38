@@ -14,6 +14,9 @@ preload.prototype = {
 
 		this.game.load.image('buttonWarrior', 'assets/img/ButtonWarrior.png');
 		this.game.load.image('buttonArcher', 'assets/img/ButtonArcher.png');
+		this.game.load.image('spriteCastlePlay', 'assets/img/CastlePlayer.png');
+		this.game.load.image('spriteCastleComp', 'assets/img/CastleComputer.png');
+		
 		//Mur
 
 		//
