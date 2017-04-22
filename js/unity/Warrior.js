@@ -1,9 +1,10 @@
-function Warrior(game, velocity, door, heroSprite) {
+function Warrior(game) {
 	this.life = 1;
   this.dead = false;
 };
 
 Warrior.prototype.create = function create() {
+	console.log("coucou je suis un Warrior");
 };
 
 Warrior.prototype.getSprite = function getSprite() {
