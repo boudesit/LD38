@@ -1,10 +1,10 @@
-function UnityBattle(game) {
+function UnityManager(game) {
 };
 
-UnityBattle.prototype.create = function create() {
+UnityManager.prototype.create = function create() {
 
 
 };
 
-UnityBattle.prototype.update = function update() {
+UnityManager.prototype.update = function update() {
 };
