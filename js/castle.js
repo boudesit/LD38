@@ -7,11 +7,11 @@ function Castle(game , castleArmee) {
 Castle.prototype.create = function create() {
 	if(this.castleArmee === 'player')
 	{
-   	 game.add.sprite(50, 400, 'spriteCastlePlay')
+   	 game.add.sprite(50, 300, 'spriteCastlePlay')
 	}
 	if (this.castleArmee === 'computer')
 	{
-		 game.add.sprite(700,400, 'spriteCastleComp')
+		 game.add.sprite(600,300, 'spriteCastleComp')
 	}
 
 
