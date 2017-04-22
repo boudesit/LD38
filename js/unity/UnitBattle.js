@@ -1,8 +1,9 @@
-function UnitBattle(game, type) {
+function UnitBattle(game, type, unitClans) {
 	this.game = game;
 	this.unit = null;
 	this.isDead = null;
 	this.type = type;
+  this.unitClans = unitClans;
 };
 
 
@@ -25,10 +26,10 @@ UnitBattle.prototype.getSprite = function getSprite() {
 
 UnitBattle.prototype.createUnitBattle = function createUnitBattle(){
 	if(this.type === "Warrior"){
-		this.unit = new Warrior(this.game);
+		this.unit = new Warrior(this.game, this.unitClans);
 		this.unit.create();
 	}else if(this.type === "Archer"){
-		this.unit = new Archer(this.game);
+		this.unit = new Archer(this.game, this.unitClans);
 		this.unit.create();
   }
 };

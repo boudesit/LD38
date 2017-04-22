@@ -6,7 +6,7 @@ var Player = function(game) {
 
 Player.prototype = {
   	create: function() {
-			this.unityManager = new UnityManager(this.game);
+			this.unityManager = new UnityManager(this.game, "player");
 			archerButton = game.add.button(100, 50, 'buttonArcher', this.actionOnArcher, this, 2, 1, 0);
 			warriorButton = game.add.button(200, 50, 'buttonWarrior', this.actionOnWarrior, this, 2, 1, 0);
 			castle = new castle(game, 'player');

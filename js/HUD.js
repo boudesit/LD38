@@ -1,6 +1,7 @@
 function HUD(game) {
 	this.game = game;
 	this.player = null;
+	this.Computer = null;
 	this.map = null;
   this.music = null;
 	this.music = null;
@@ -13,6 +14,12 @@ HUD.prototype.create = function create() {
 
 	 this.player = new Player(this.game);
    this.player.create();
+
+	 this.Computer = new Computer(this.game);
+   this.Computer.create();
+
+	 this.map = new map(this.game);
+ 	 this.map.create();
   // this.music = game.add.audio('gameSound', 1, true);
 	// if (this.music.isPlaying == false)
 	// {
