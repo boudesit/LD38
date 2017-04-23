@@ -22,6 +22,10 @@ preload.prototype = {
 		this.game.load.image('spriteCastlePlay', 'assets/img/CastlePlayer.png');
 		this.game.load.image('spriteCastleComp', 'assets/img/CastleComputer.png');
 
+		this.game.load.image('food', 'assets/img/food.png');
+		this.game.load.image('rock', 'assets/img/rock.png');
+		this.game.load.image('water', 'assets/img/water.png');
+		
 		//Mur
 
 		//
