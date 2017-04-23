@@ -1,5 +1,6 @@
 function HUD(game) {
 	this.game = game;
+	this.ressourcesManager = null;
 	this.player = null;
 	this.computer = null;
 	this.map = null;
@@ -13,11 +14,15 @@ HUD.prototype.create = function create() {
 
    this.spriteBG = this.game.add.tileSprite(0, 0, 800, 600, 'background');
 
+	 this.ressourcesManager = new RessourcesManager(this.game);
+   this.ressourcesManager.create();
+
 	 this.player = new Player(this.game);
    this.player.create();
 
 	 this.computer = new Computer(this.game);
    this.computer.create();
+
 
 	 this.map = new map(this.game);
  	 this.map.create();
