@@ -63,8 +63,8 @@ HUD.prototype.update = function update() {
 
 	if (this.shakeWorld > 0)
 	{
-		var rand1 = game.rnd.integerInRange(-5,5);
-		var rand2 = game.rnd.integerInRange(-5,5);
+		var rand1 = game.rnd.integerInRange(-2,2);
+		var rand2 = game.rnd.integerInRange(-2,2);
 		game.world.setBounds(rand1, rand2, game.width + rand1, game.height + rand2);
 		this.shakeWorld--;
 	}
@@ -83,7 +83,7 @@ HUD.prototype.computeFight = function computeFight(player,computer) {
 HUD.prototype.playerHitCastle = function playerHitCastle(computerCastle,player) {
 
 		computerCastle.life -= player.damage;
-		this.shakeWorld = 5;
+		this.shakeWorld = 3;
 
 		if(computerCastle.life <= 0) {
 		 		 this.explosion.reset(computerCastle.body.x, computerCastle.body.y + 50);
@@ -93,14 +93,14 @@ HUD.prototype.playerHitCastle = function playerHitCastle(computerCastle,player) 
 		 		 computerCastle.kill();
 				 this.win();
 		}
-
+		player.body.velocity.x= 60;
 };
 
 
 HUD.prototype.computerHitCastle = function computerHitCastle(playerCastle,computer) {
 
 		playerCastle.life -= computer.damage;
-		this.shakeWorld = 5;
+		this.shakeWorld = 3;
 
 		if(playerCastle.life <= 0) {
 		 		 this.explosion.reset(playerCastle.body.x, playerCastle.body.y - 50);
@@ -110,7 +110,7 @@ HUD.prototype.computerHitCastle = function computerHitCastle(playerCastle,comput
 		 		 playerCastle.kill();
 				 this.lose();
 		}
-
+		computer.body.velocity.x= -60;
 };
 
 HUD.prototype.lose = function lose() {

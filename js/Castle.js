@@ -1,6 +1,6 @@
 function Castle(game , castleArmee) {
 	this.game = game;
-	this.life = 10;
+	this.life = 100;
   this.dead = false;
 	this.castleArmee = castleArmee;
 	this.castleSprite = null;
