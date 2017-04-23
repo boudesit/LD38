@@ -9,10 +9,15 @@ var Player = function(game) {
 	this.text1 = null;
 	this.text2 = null;
 	this.text3 = null;
+	this.timer = null;
 }
 
 Player.prototype = {
   	create: function() {
+			//  Create our Timer
+			this.timer = game.time.create(false);
+      this.timer.start();
+
 			this.unityManager = new UnityManager(this.game, "player");
 
 			//  Affichage des Ressources
@@ -22,8 +27,8 @@ Player.prototype = {
 			this.text3 = game.add.text(50, 80, "Rock : " + this.rock, { font: '18px Arial', fill: '#c0c0c0' });
 
 			//button
-			archerButton = game.add.button(250, 20, 'buttonArcher', this.actionOnArcher, this, 2, 1, 0);
-			warriorButton = game.add.button(250, 60, 'buttonWarrior', this.actionOnWarrior, this, 2, 1, 0);
+			game.add.button(250, 20, 'buttonArcher', this.actionOnArcher, this, 2, 1, 0);
+			game.add.button(250, 60, 'buttonWarrior', this.actionOnWarrior, this, 2, 1, 0);
 
 			this.castle = new Castle(game, 'player');
 			this.castle.create();
@@ -40,19 +45,34 @@ Player.prototype = {
 
 	actionOnArcher: function() {
 
+		if(this.nextClickOnUnit>game.time.now)
+		{
+			return;
+		} // too early
+
+		this.nextClickOnUnit = game.time.now + 1000; // wait at least 1 second (1000ms)
+
 		if(this.buy("Archer")) {
 			this.unityManager.setUnitType("Archer");
 			this.unityManager.isCreate(true);
 		}
-		console.log("Button Archer clicker");
+
 	},
 
 	actionOnWarrior: function() {
+
+		if(this.nextClickOnUnit>game.time.now)
+		{
+			return;
+		} // too early
+
+		this.nextClickOnUnit = game.time.now + 1000; // wait at least 1 second (1000ms)
+
 		if(this.buy("Warrior")) {
 			this.unityManager.setUnitType("Warrior");
 			this.unityManager.isCreate(true);
 		}
-		console.log("Button Warrior clicker");
+
 	},
 
 	getPlayerUnitGroup: function() {
