@@ -25,7 +25,6 @@ FightCastle.prototype.fight = function fight() {
   if(this.castle.life <= 0) {
     this.finnish = true;
   }
-  console.log("Life: " +this.castle.life);
 };
 
 FightCastle.prototype.getUnitSprite = function getUnitSprite() {
