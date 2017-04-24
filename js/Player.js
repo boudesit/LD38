@@ -25,19 +25,28 @@ Player.prototype = {
 			this.unityManager = new UnityManager(this.game, "player");
 
 			//  Affichage des Ressources
-			game.add.text(20, 10, "Player Ressources", { font: '20px Arial', fill: '#fff' });
-			this.text1 = game.add.text(50, 40, "Food : " + this.food, { font: '18px Arial', fill: '#00ff00' });
-			this.text2 = game.add.text(50, 60, "Water : " + this.water, { font: '18px Arial', fill: '#0000ff' });
-			this.text3 = game.add.text(50, 80, "Rock : " + this.rock, { font: '18px Arial', fill: '#c0c0c0' });
+			game.add.text(20, 10, "Ressources", { font: '25px Arial', fill: '#0000' });
+
+			var icone_ressource_1 = game.add.sprite(30, 40, 'buttonUnitWater');
+			icone_ressource_1.scale.setTo(0.5, 0.5);
+
+			var icone_ressource_2 = game.add.sprite(30, 70, 'buttonUnitFood');
+			icone_ressource_2.scale.setTo(0.5, 0.5);
+
+			var icone_ressource_3 = game.add.sprite(30, 100, 'buttonUnitRock');
+			icone_ressource_3.scale.setTo(0.5, 0.5);
+
+			this.text1 = game.add.text(60, 40, this.water, { font: '22px Arial', fill: '#0000ff' });
+			this.text2 = game.add.text(60, 70, this.food, { font: '22px Arial', fill: '#6d0610' });
+			this.text3 = game.add.text(60, 100, this.rock, { font: '22px Arial', fill: '#dbac2a' });
 
 			//button
-			game.add.button(250, 20, 'buttonArcher', this.actionOnArcher, this, 2, 1, 0);
-			game.add.button(250, 60, 'buttonWarrior', this.actionOnWarrior, this, 2, 1, 0);
+			game.add.button(250, 30, 'buttonArcher', this.actionOnArcher, this, 2, 1, 0);
+			game.add.button(320, 30, 'buttonWarrior', this.actionOnWarrior, this, 2, 1, 0);
 
-			game.add.button(290, 60, 'buttonUnitRock', this.actionOnUnitRock, this, 2, 1, 0);
-			game.add.button(330, 60, 'buttonUnitWater', this.actionOnUnitWater, this, 2, 1, 0);
-			game.add.button(370, 60, 'buttonUnitFood', this.actionOnUnitFood, this, 2, 1, 0);
-
+			game.add.button(250, 90, 'buttonUnitWater', this.actionOnUnitWater, this, 2, 1, 0);
+			game.add.button(320, 90, 'buttonUnitFood', this.actionOnUnitFood, this, 2, 1, 0);
+			game.add.button(390, 90, 'buttonUnitRock', this.actionOnUnitRock, this, 2, 1, 0);
 
 
 			this.castle = new Castle(game, 'player');
@@ -51,9 +60,9 @@ Player.prototype = {
 		this.PlayerUnitWaterGroupRessource = this.unityManager._getUnitRessourcesWaterGroup();
 		this.PlayerUnitFoodGroupRessource = this.unityManager._getUnitRessourcesFoodGroup();
 
-		this.text1.setText("Food : " + this.food);
-		this.text2.setText("Water : " + this.water);
-		this.text3.setText("Rock : " + this.rock);
+		this.text1.setText(this.water);
+		this.text2.setText(this.food);
+		this.text3.setText(this.rock);
 
 	},
 

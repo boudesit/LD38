@@ -15,7 +15,7 @@ function UnitWater(game, unitClans) {
 
 UnitWater.prototype.create = function create() {
 
-	this.unitRockSprite = this.game.add.sprite(this.posX, 450, "Canard", 0);
+	this.unitRockSprite = this.game.add.sprite(this.posX, 450, "miner", 0);
 	this.unitRockSprite.animations.add('idle', [0,1,2]);
 	this.unitRockSprite.animations.play('idle', 5, true);
 	this.game.physics.arcade.enable(this.unitRockSprite);

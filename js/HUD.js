@@ -14,7 +14,8 @@ function HUD(game) {
 
 HUD.prototype.create = function create() {
 
-   this.spriteBG = this.game.add.tileSprite(0, 0, 800, 600, 'background');
+
+   this.spriteBG =  game.add.tileSprite(0 , 0, 800, 600, 'background');
 
 	 this.ressourcesManager = new RessourcesManager(this.game);
    this.ressourcesManager.create();
@@ -80,8 +81,15 @@ HUD.prototype.update = function update() {
 
 
 	if((this.fight != null && this.fight.isFinnish()) || (this.fightCastle != null && this.fightCastle.isFinnish())) {
-		this.player.getPlayerUnitGroup().setAll("body.velocity.x", 60);
-		this.computer.getComputerUnitGroup().setAll("body.velocity.x", -60);
+		if(this.player.getPlayerUnitGroup() != null)
+		{
+			this.player.getPlayerUnitGroup().setAll("body.velocity.x", 60);
+		}
+
+		if(this.computer.getComputerUnitGroup() != null)
+		{
+			this.computer.getComputerUnitGroup().setAll("body.velocity.x", -60);
+		}
 	}
 
 
