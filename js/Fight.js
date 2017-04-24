@@ -8,6 +8,7 @@ function Fight(game, player, computer) {
 };
 
 Fight.prototype.create = function create() {
+	this.deathSound = game.add.audio('deathSound');
 	this.playerDeath  = game.add.sprite(-100,-100, 'playerDeath');
 	this.computerDeath  = game.add.sprite(-100,-100, 'computerDeath');
   this.player.body.velocity.x = 0;
@@ -30,6 +31,7 @@ Fight.prototype.fight = function fight() {
 
 	if(this.player.life <= 0){
 		this.player.kill();
+		this.deathSound.play();
 		this.playerDeath.reset(this.player.x -25 , this.player.y -50);
 		this.playerDeath.animations.add('playerDeath');
 		this.playerDeath.play('playerDeath', 5, false , true);
@@ -39,6 +41,7 @@ Fight.prototype.fight = function fight() {
 
 	if(this.computer.life <= 0){
 		this.computer.kill();
+		this.deathSound.play();
 		this.computerDeath.reset(this.computer.x -25 , this.computer.y -50);
 		this.computerDeath.animations.add('computerDeath');
 		this.computerDeath.play('computerDeath', 5, false , true);
