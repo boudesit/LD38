@@ -55,11 +55,13 @@ Computer.prototype = {
 		actionOnArcher: function() {
 
 			this.unityManager.setUnitType("Archer");
+			this.unityManager.setUnitClass(0);
 			this.unityManager.isCreate(true);
 		},
 
 		actionOnWarrior: function() {
 			this.unityManager.setUnitType("Warrior");
+			this.unityManager.setUnitClass(0);
 			this.unityManager.isCreate(true);
 		},
 
