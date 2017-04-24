@@ -13,8 +13,10 @@ Water.prototype.create = function create() {
 		this.waterSprite.body.velocity.x = 0;
 		this.waterSprite.body.velocity.y = 0;
 		this.waterSprite.physicsBodyType = Phaser.Physics.ARCADE;
+		this.waterSprite.body.immovable = true;
+		this.waterSprite.body.moves = false;
 		this.waterSprite.type = "Water";
-
+		this.waterSprite.ressource = 10;
 };
 
 Water.prototype.update = function update() {

@@ -188,5 +188,18 @@ Player.prototype = {
 		}
 		return isbuy;
 
+	},
+
+	setRock: function(rock) {
+		this.rock+= rock;
+	},
+
+	setWater: function(water) {
+		this.water+= water;
+	},
+
+	setFood: function(food) {
+		this.food+= food;
 	}
+
 }
