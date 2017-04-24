@@ -114,7 +114,7 @@ HUD.prototype.computeFight = function computeFight(player,computer) {
 };
 
 HUD.prototype.computeFightCastle = function computeFightCastle(castle,unit) {
-
+		this.shakeWorld = 10;
 		if((this.fightCastle != null && this.fightCastle.isFinnish())) {
 			this.explosion.reset(castle.body.x, castle.body.y + 50);
 			this.explosion.animations.add('boom');
@@ -136,6 +136,7 @@ HUD.prototype.computeFightCastle = function computeFightCastle(castle,unit) {
 };
 
 HUD.prototype.moveUnitRockTowardRessources = function moveUnitRockTowardRessources(sprite) {
+
 	if(!sprite.isDestination && sprite.ressources != 100) {
 		game.physics.arcade.moveToObject(sprite, this.ressourcesManager.getRockSprite(), 60);
 	} else if (sprite.isDestination && sprite.ressources === 100) {
@@ -170,7 +171,7 @@ HUD.prototype.moveUnitWaterTowardRessources = function moveUnitWaterTowardRessou
 HUD.prototype.moveUnitFoodTowardRessources = function moveUnitFoodTowardRessources(sprite) {
 	if(!sprite.isDestination && sprite.ressources != 100) {
 		game.physics.arcade.moveToObject(sprite, this.ressourcesManager.getFoodSprite(), 60);
-	} else if (sprite.isDestination && sprite.ressources === 100) {
+	} else if (sprite.isDestination && sprite.ressources >= 100) {
 		if(sprite.unitClans === "player") {
 			game.physics.arcade.moveToObject(sprite, this.player.getPlayerCastle(), 60);
 			game.physics.arcade.collide(sprite, this.player.getPlayerCastle() , this.addRessources, null, this);
@@ -204,11 +205,11 @@ HUD.prototype.addRessources = function addRessources(unit, castle) {
 };
 
 HUD.prototype.computeRessources = function computeRessources(sprite, ressource) {
-	if(!sprite.isDestination) {
+
 		this.computeRessourcesTkt = new ComputeRessources(this.game, sprite, ressource);
 		this.computeRessourcesTkt.create();
 		sprite.isDestination = true;
-	}
+
 };
 
 
