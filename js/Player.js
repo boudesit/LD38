@@ -34,10 +34,9 @@ Player.prototype = {
 			game.add.button(250, 30, 'buttonArcher', this.actionOnArcher, this, 2, 1, 0);
 			game.add.button(320, 30, 'buttonWarrior', this.actionOnWarrior, this, 2, 1, 0);
 
-			game.add.button(250, 90, 'buttonUnitRock', this.actionOnUnitRock, this, 2, 1, 0);
-			game.add.button(320, 90, 'buttonUnitWater', this.actionOnUnitWater, this, 2, 1, 0);
-			game.add.button(390, 90, 'buttonUnitFood', this.actionOnUnitFood, this, 2, 1, 0);
-
+			game.add.button(250, 90, 'buttonUnitWater', this.actionOnUnitWater, this, 2, 1, 0);
+			game.add.button(320, 90, 'buttonUnitFood', this.actionOnUnitFood, this, 2, 1, 0);
+			game.add.button(390, 90, 'buttonUnitRock', this.actionOnUnitRock, this, 2, 1, 0);
 
 
 			this.castle = new Castle(game, 'player');
