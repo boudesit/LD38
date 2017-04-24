@@ -8,6 +8,7 @@ function HUD(game) {
 	this.music = null;
   this.spriteBG = null;
 	this.fight = null;
+	this.fightCastle = null;
 };
 
 HUD.prototype.create = function create() {
@@ -55,16 +56,18 @@ HUD.prototype.update = function update() {
 	game.physics.arcade.collide(  this.player.getPlayerUnitGroup() , this.player.getPlayerUnitGroup()  , null, null, this);
 	game.physics.arcade.collide(  this.computer.getComputerUnitGroup() , this.computer.getComputerUnitGroup()  , null, null, this);
 
-
-	game.physics.arcade.collide(  this.player.getPlayerUnitGroup() , this.computer.getComputerCastle() , this.playerHitCastle, null, this);
-	game.physics.arcade.collide(  this.computer.getComputerUnitGroup() , this.player.getPlayerCastle() , this.computerHitCastle, null, this);
+	// collision Castle
+	game.physics.arcade.collide(  this.player.getPlayerUnitGroup() , this.computer.getComputerCastle() , this.computeFightCastle, null, this);
+	game.physics.arcade.collide(  this.computer.getComputerUnitGroup() , this.player.getPlayerCastle() , this.computeFightCastle, null, this);
 
 	game.physics.arcade.overlap(  this.player.getPlayerUnitGroup() , this.computer.getComputerUnitGroup() , this.computeFight, null, this);
 
-	if(this.fight != null && this.fight.isFinnish()) {
+	if((this.fight != null && this.fight.isFinnish()) || (this.fightCastle != null && this.fightCastle.isFinnish())) {
 		this.player.getPlayerUnitGroup().setAll("body.velocity.x", 60);
 		this.computer.getComputerUnitGroup().setAll("body.velocity.x", -60);
 	}
+
+
 
 	if (this.shakeWorld > 0)
 	{
@@ -80,42 +83,33 @@ HUD.prototype.update = function update() {
 };
 
 HUD.prototype.computeFight = function computeFight(player,computer) {
+		console.log("je passe ici ?");
 
 		this.fight = new Fight(this.game, player, computer);
 		this.fight.create();
 };
 
-HUD.prototype.playerHitCastle = function playerHitCastle(computerCastle,player) {
+HUD.prototype.computeFightCastle = function computeFightCastle(castle,unit) {
+		console.log("je passe ici ?");
 
-		computerCastle.life -= player.damage;
-		this.shakeWorld = 3;
-
-		if(computerCastle.life <= 0) {
-		 		 this.explosion.reset(computerCastle.body.x, computerCastle.body.y + 50);
-		 		 this.explosion.animations.add('boom');
-		 		 this.explosion.play('boom', 30, false , true);
-				 this.explosionSound.play();
-		 		 computerCastle.kill();
-				 this.win();
+		if((this.fightCastle != null && this.fightCastle.isFinnish())) {
+			this.explosion.reset(castle.body.x, castle.body.y + 50);
+			this.explosion.animations.add('boom');
+			this.explosion.play('boom', 30, false , true);
+			this.explosionSound.play();
+			castle.kill();
+			if(castle.whois === "computer") {
+				this.win();
+			} else {
+				this.lose();
+			}
 		}
-		player.body.velocity.x= 60;
-};
-
-
-HUD.prototype.computerHitCastle = function computerHitCastle(playerCastle,computer) {
-
-		playerCastle.life -= computer.damage;
-		this.shakeWorld = 3;
-
-		if(playerCastle.life <= 0) {
-		 		 this.explosion.reset(playerCastle.body.x, playerCastle.body.y - 50);
-		 		 this.explosion.animations.add('boom');
-		 		 this.explosion.play('boom', 30, false , true);
-				 this.explosionSound.play();
-		 		 playerCastle.kill();
-				 this.lose();
+		if(this.fightCastle === null || (this.fightCastle != null && this.fightCastle.isFinnish() && this.fightCastle.getUnitSprite() != unit)) {
+			this.fightCastle = new FightCastle(this.game, unit, castle);
+			this.fightCastle.create();
 		}
-		computer.body.velocity.x= -60;
+
+
 };
 
 HUD.prototype.lose = function lose() {

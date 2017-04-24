@@ -2,18 +2,35 @@ function RessourcesManager(game) {
 	this.game = game;
   this.food = null;
   this.rock = null;
-  this.watter = null;
+  this.water = null;
 };
+var posY = [535, 515, 555];
+var posX= [40, 400, 680];
+
 
 RessourcesManager.prototype.create = function create() {
 
-  this.food = new Food(this.game);
+	this.rand = this.getRandomIntInclusive(0 , 2);
+
+  this.food = new Food(this.game, posX[this.rand], posY[this.rand]);
   this.food.create();
 
-  this.rock = new Rock(this.game);
+	this.rand++;
+
+	if(this.rand >= posX.length) {
+		this.rand = 0;
+	}
+
+  this.rock = new Rock(this.game, posX[this.rand], posY[this.rand] );
   this.rock.create();
 
-  this.water = new Water(this.game);
+	this.rand++;
+
+	if(this.rand >= posX.length) {
+		this.rand = 0;
+	}
+
+  this.water = new Water(this.game, posX[this.rand], posY[this.rand] );
   this.water.create();
 
 };
@@ -22,3 +39,10 @@ RessourcesManager.prototype.update = function update() {
 
 
 };
+
+
+RessourcesManager.prototype.getRandomIntInclusive = function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min +1)) + min;
+}
