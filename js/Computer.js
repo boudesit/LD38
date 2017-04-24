@@ -80,7 +80,8 @@ Computer.prototype = {
 		},
 
 		buy: function(type) {
-		isbuy = false;
+		isbuy = true;
+		/*
 		// For Archer
 		if(this.food >= 20 && this.water >= 10 && this.rock >= 5 && type === "Archer") {
 			this.food -= 20;
@@ -96,6 +97,7 @@ Computer.prototype = {
 			this.rock -= 10;
 			isbuy = true;
 		}
+		*/
 		return isbuy;
 
 	}

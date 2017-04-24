@@ -9,7 +9,9 @@ function Castle(game , castleArmee) {
 Castle.prototype.create = function create() {
 	if(this.castleArmee === 'player')
 	{
-   	this.castleSprite = game.add.sprite(50, 300, 'spriteCastlePlay')
+   	this.castleSprite = game.add.sprite(-10, 220, 'spriteCastlePlay');
+		this.castleSprite.animations.add('idle', [0,1,2]);
+		this.castleSprite.animations.play('idle', 5, true);
 		this.game.physics.enable(this.castleSprite);
 	 	this.castleSprite.physicsBodyType = Phaser.Physics.ARCADE;
 	 	this.castleSprite.enableBody = true;
@@ -19,7 +21,9 @@ Castle.prototype.create = function create() {
 	}
 	if (this.castleArmee === 'computer')
 	{
-		this.castleSprite = game.add.sprite(600,300, 'spriteCastleComp')
+		this.castleSprite = game.add.sprite(610,220, 'spriteCastleComp');
+		this.castleSprite.animations.add('idle', [0,1,2]);
+		this.castleSprite.animations.play('idle', 5, true);
 	 	this.game.physics.enable(this.castleSprite);
 	 	this.castleSprite.physicsBodyType = Phaser.Physics.ARCADE;
 	 	this.castleSprite.enableBody = true;
