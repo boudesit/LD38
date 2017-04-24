@@ -29,7 +29,7 @@ Computer.prototype = {
 			this.unityManager = new UnityManager(this.game, "computer");
 
 			this.timer = game.time.create(false);
-			this.timer.loop(7000, this.randomCreateUnit, this);
+			this.timer.loop(5000, this.randomCreateUnit, this);
 			this.timer.start();
 
 	},
