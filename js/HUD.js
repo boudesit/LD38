@@ -52,6 +52,11 @@ HUD.prototype.update = function update() {
   this.player.update();
 	this.computer.update();
 
+	this.player.getPlayerUnitRockGroupRessource().forEach(this.moveUnitRockTowardRessources, this);
+	this.player.getPlayerUnitWaterGroupRessource().forEach(this.moveUnitWaterTowardRessources, this);
+	this.player.getPlayerUnitFoodGroupRessource().forEach(this.moveUnitFoodTowardRessources, this);
+
+
 	//  Run collision
 	game.physics.arcade.collide(  this.player.getPlayerUnitGroup() , this.player.getPlayerUnitGroup()  , null, null, this);
 	game.physics.arcade.collide(  this.computer.getComputerUnitGroup() , this.computer.getComputerUnitGroup()  , null, null, this);
@@ -111,6 +116,22 @@ HUD.prototype.computeFightCastle = function computeFightCastle(castle,unit) {
 
 
 };
+
+HUD.prototype.moveUnitRockTowardRessources = function moveUnitRockTowardRessources(sprite) {
+	game.physics.arcade.moveToObject(sprite, this.ressourcesManager.getRockSprite(), 60);
+
+};
+
+HUD.prototype.moveUnitWaterTowardRessources = function moveUnitWaterTowardRessources(sprite) {
+	game.physics.arcade.moveToObject(sprite, this.ressourcesManager.getWaterSprite(), 60);
+
+};
+
+HUD.prototype.moveUnitFoodTowardRessources = function moveUnitFoodTowardRessources(sprite) {
+	game.physics.arcade.moveToObject(sprite, this.ressourcesManager.getFoodSprite(), 60);
+
+};
+
 
 HUD.prototype.lose = function lose() {
 	this.music.pause();
