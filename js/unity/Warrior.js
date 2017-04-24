@@ -1,9 +1,10 @@
 function Warrior(game, unitClans) {
 	this.game = game;
-	this.life = 6;
+	this.life = 10;
 	this.warriorSprite = null;
   this.dead = false;
-	if(unitClans === "player") {
+	this.unitClans = unitClans;
+	if(this.unitClans === "player") {
 		this.velocityX = 60;
 		this.posX = 100;
 	} else {
@@ -13,7 +14,12 @@ function Warrior(game, unitClans) {
 };
 
 Warrior.prototype.create = function create() {
-	this.warriorSprite = this.game.add.sprite(this.posX, 400, "Dindon", 0);
+	if(this.unitClans === "player") {
+	this.warriorSprite = this.game.add.sprite(this.posX, 370, "warrior", 0);
+	} else {
+	this.warriorSprite = this.game.add.sprite(this.posX, 370, "warriorComputer", 0);
+	}
+
 	this.warriorSprite.animations.add('idle', [0,1,2]);
 	this.warriorSprite.animations.play('idle', 5, true);
 	this.game.physics.arcade.enable(this.warriorSprite);
@@ -25,7 +31,7 @@ Warrior.prototype.create = function create() {
 	this.warriorSprite.anchor.set(0.5);
 	this.warriorSprite.scale.setTo(2,2);
 	this.warriorSprite.life = this.life;
-	this.warriorSprite.damage = 2;
+	this.warriorSprite.damage = 1;
 };
 
 Warrior.prototype.getSprite = function getSprite() {
