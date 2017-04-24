@@ -81,8 +81,15 @@ HUD.prototype.update = function update() {
 
 
 	if((this.fight != null && this.fight.isFinnish()) || (this.fightCastle != null && this.fightCastle.isFinnish())) {
-		this.player.getPlayerUnitGroup().setAll("body.velocity.x", 60);
-		this.computer.getComputerUnitGroup().setAll("body.velocity.x", -60);
+		if(this.player.getPlayerUnitGroup() != null)
+		{
+			this.player.getPlayerUnitGroup().setAll("body.velocity.x", 60);
+		}
+
+		if(this.computer.getComputerUnitGroup() != null)
+		{
+			this.computer.getComputerUnitGroup().setAll("body.velocity.x", -60);
+		}
 	}
 
 
