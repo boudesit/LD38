@@ -3,6 +3,7 @@ function UnitWater(game, unitClans) {
 	this.life = 4;
 	this.unitRockSprite = null;
   this.dead = false;
+	this.unitClans = unitClans;
 	if(unitClans === "player") {
 		this.velocityX = 60;
 		this.posX = 100;
@@ -28,6 +29,10 @@ UnitWater.prototype.create = function create() {
 	this.unitRockSprite.life = this.life;
 	this.unitRockSprite.damage = 1;
   this.unitRockSprite.type = "Water";
+	this.unitRockSprite.isDestination = false;
+	this.unitRockSprite.ressources = 0;
+	this.unitRockSprite.unitClans = this.unitClans;
+
 };
 
 UnitWater.prototype.getSprite = function getSprite() {

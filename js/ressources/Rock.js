@@ -13,7 +13,10 @@ Rock.prototype.create = function create() {
 		this.rockSprite.body.velocity.x = 0;
 		this.rockSprite.body.velocity.y = 0;
 		this.rockSprite.physicsBodyType = Phaser.Physics.ARCADE;
+		this.rockSprite.body.immovable = true;
+		this.rockSprite.body.moves = false;
 		this.rockSprite.type = "Rock";
+		this.rockSprite.ressource = 10;
 
 };
 

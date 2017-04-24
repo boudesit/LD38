@@ -3,6 +3,8 @@ function UnitFood(game, unitClans) {
 	this.life = 4;
 	this.unitRockSprite = null;
   this.dead = false;
+	this.unitClans = unitClans;
+
 	if(unitClans === "player") {
 		this.velocityX = 60;
 		this.posX = 100;
@@ -27,7 +29,12 @@ UnitFood.prototype.create = function create() {
 	this.unitRockSprite.scale.setTo(2,2);
 	this.unitRockSprite.life = this.life;
 	this.unitRockSprite.damage = 1;
-  this.unitRockSprite.type = "Rock";
+  this.unitRockSprite.type = "Food";
+	this.unitRockSprite.isDestination = false;
+	this.unitRockSprite.ressources = 0;
+	this.unitRockSprite.unitClans = this.unitClans;
+
+
 };
 
 UnitFood.prototype.getSprite = function getSprite() {

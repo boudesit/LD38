@@ -14,8 +14,11 @@ Food.prototype.create = function create() {
 	this.foodSprite.body.velocity.x = 0;
 	this.foodSprite.body.velocity.y = 0;
 	this.foodSprite.physicsBodyType = Phaser.Physics.ARCADE;
-
+	this.foodSprite.body.immovable = true;
+	this.foodSprite.body.moves = false;
 	this.foodSprite.type = "Food";
+	this.foodSprite.ressource = 10;
+
 };
 
 Food.prototype.update = function update() {
