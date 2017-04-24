@@ -29,7 +29,7 @@ Computer.prototype = {
 			this.unityManager = new UnityManager(this.game, "computer");
 
 			this.timer = game.time.create(false);
-			this.timer.loop(5000, this.randomCreateUnit, this);
+			this.timer.loop(7000, this.randomCreateUnit, this);
 			this.timer.start();
 
 	},
@@ -80,7 +80,8 @@ Computer.prototype = {
 		},
 
 		buy: function(type) {
-		isbuy = false;
+		isbuy = true;
+		/*
 		// For Archer
 		if(this.food >= 20 && this.water >= 10 && this.rock >= 5 && type === "Archer") {
 			this.food -= 20;
@@ -96,6 +97,7 @@ Computer.prototype = {
 			this.rock -= 10;
 			isbuy = true;
 		}
+		*/
 		return isbuy;
 
 	}

@@ -173,22 +173,22 @@ Player.prototype = {
 		buy: function(type) {
 		isbuy = false;
 		// For Archer
-		if(this.food >= 20 && this.water >= 10 && this.rock >= 5 && type === "Archer") {
-			this.food -= 20;
-			this.water -= 10;
-			this.rock -= 5;
-			isbuy = true;
-		}
-
-		// For Warrior
-		if(this.food >= 30 && this.water >= 15 && this.rock >= 10 && type === "Warrior") {
-			this.food -= 30;
-			this.water -= 15;
+		if(this.food >= 10 && this.water >= 20 && this.rock >= 10 && type === "Archer") {
+			this.food -= 10;
+			this.water -= 20;
 			this.rock -= 10;
 			isbuy = true;
 		}
 
 		// For Warrior
+		if(this.food >= 10 && this.water >= 20 && this.rock >= 20 && type === "Warrior") {
+			this.food -= 10;
+			this.water -= 20;
+			this.rock -= 20;
+			isbuy = true;
+		}
+
+		// For unit recolte
 		if(this.food >= 10 && this.water >= 10 && this.rock >= 10 && type === "UnitRock") {
 			this.food -= 10;
 			this.water -= 10;
