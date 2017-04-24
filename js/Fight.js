@@ -3,13 +3,17 @@ function Fight(game, player, computer) {
 	this.player = player;
 	this.computer = computer;
   this.finnish = false;
+	this.playerDeath = null ;
+	this.computerDeath = null ;
 };
 
 Fight.prototype.create = function create() {
+	this.playerDeath  = game.add.sprite(-100,-100, 'playerDeath');
+	this.computerDeath  = game.add.sprite(-100,-100, 'computerDeath');
   this.player.body.velocity.x = 0;
   this.computer.body.velocity.x = 0;
   this.timer = game.time.create(false);
-  this.timer.loop(1000, this.fight, this);
+  this.timer.loop(100, this.fight, this);
   this.timer.start();
 };
 
@@ -26,12 +30,20 @@ Fight.prototype.fight = function fight() {
 
 	if(this.player.life <= 0){
 		this.player.kill();
+		this.playerDeath.reset(this.player.x -25 , this.player.y -50);
+		this.playerDeath.animations.add('playerDeath');
+		this.playerDeath.play('playerDeath', 5, false , true);
     this.finnish = true;
+  	this.timer.stop();
 	}
 
 	if(this.computer.life <= 0){
 		this.computer.kill();
+		this.computerDeath.reset(this.computer.x -25 , this.computer.y -50);
+		this.computerDeath.animations.add('computerDeath');
+		this.computerDeath.play('computerDeath', 5, false , true);
     this.finnish = true;
+		this.timer.stop();
 	}
 };
 

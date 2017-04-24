@@ -10,11 +10,12 @@ function HUD(game) {
 	this.fight = null;
 	this.fightCastle = null;
 	this.computeRessourcesTkt = null;
+	this.timeDelay = 0;
 };
 
 HUD.prototype.create = function create() {
 
-
+	this.timeDelay = 0;
    this.spriteBG =  game.add.tileSprite(0 , 0, 800, 600, 'background');
 
 	 this.ressourcesManager = new RessourcesManager(this.game);
@@ -109,8 +110,14 @@ HUD.prototype.update = function update() {
 
 HUD.prototype.computeFight = function computeFight(player,computer) {
 
-		this.fight = new Fight(this.game, player, computer);
-		this.fight.create();
+		if (game.time.now > this.timeDelay){
+			//debugger;
+			this.fight = new Fight(this.game, player, computer);
+			this.fight.create();
+			// wait 1 second
+			this.timeDelay = game.time.now + 1000;
+	  }
+
 };
 
 HUD.prototype.computeFightCastle = function computeFightCastle(castle,unit) {
