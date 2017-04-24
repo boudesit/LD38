@@ -13,7 +13,7 @@ function Warrior(game, unitClans) {
 };
 
 Warrior.prototype.create = function create() {
-	this.warriorSprite = this.game.add.sprite(this.posX, 370, "Dindon", 0);
+	this.warriorSprite = this.game.add.sprite(this.posX, 370, "warrior", 0);
 	this.warriorSprite.animations.add('idle', [0,1,2]);
 	this.warriorSprite.animations.play('idle', 5, true);
 	this.game.physics.arcade.enable(this.warriorSprite);

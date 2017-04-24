@@ -14,7 +14,7 @@ function Archer(game, unitClans) {
 
 Archer.prototype.create = function create() {
 
-	this.archerSprite = this.game.add.sprite(this.posX, 370, "Canard", 0);
+	this.archerSprite = this.game.add.sprite(this.posX, 370, "archer", 0);
 	this.archerSprite.animations.add('idle', [0,1,2]);
 	this.archerSprite.animations.play('idle', 5, true);
 	this.game.physics.arcade.enable(this.archerSprite);

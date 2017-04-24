@@ -15,11 +15,14 @@ preload.prototype = {
 		this.game.load.spritesheet('ressource_2', 'assets/img/ressource_2.png', 50, 50,2); //food
 		this.game.load.spritesheet('ressource_3', 'assets/img/ressource_3.png', 50, 50,2);//Rock
 
-		this.game.load.spritesheet('Dindon', 'assets/img/unite1_run.png', 50, 50,3);
-		this.game.load.spritesheet('Canard', 'assets/img/unite3_run.png', 50, 50,3);
+		this.game.load.spritesheet('warrior', 'assets/img/unite1_run.png', 50, 50,3);
+		this.game.load.spritesheet('archer', 'assets/img/unite3_run.png', 50, 50,3);
+
+		this.game.load.spritesheet('miner', 'assets/img/unite2_mine.png', 50, 50,3);
 
 		this.game.load.spritesheet('spriteCastlePlay', 'assets/img/castle.png',200,200,3);
 		this.game.load.spritesheet('spriteCastleComp', 'assets/img/castle_enemy.png',200,200,3);
+
 
 		//Image
 		this.game.load.image('background', 'assets/img/game_background.png');
