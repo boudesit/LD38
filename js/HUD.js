@@ -75,9 +75,9 @@ HUD.prototype.update = function update() {
 	game.physics.arcade.collide(this.player.getPlayerUnitWaterGroupRessource(), this.ressourcesManager.getWaterSprite(),this.computeRessources, null, this);
 	game.physics.arcade.collide(this.player.getPlayerUnitFoodGroupRessource(), this.ressourcesManager.getFoodSprite(),this.computeRessources, null, this);
 
-	game.physics.arcade.collide(this.player.getPlayerUnitRockGroupRessource(), this.player.getPlayerCastle() , this.addRessources, null, this);
-	game.physics.arcade.collide(this.player.getPlayerUnitWaterGroupRessource(), this.player.getPlayerCastle() , this.addRessources, null, this);
-	game.physics.arcade.collide(this.player.getPlayerUnitFoodGroupRessource(), this.player.getPlayerCastle() , this.addRessources, null, this);
+	// game.physics.arcade.collide(this.player.getPlayerUnitRockGroupRessource(), this.player.getPlayerCastle() , this.addRessources, null, this);
+	// game.physics.arcade.collide(this.player.getPlayerUnitWaterGroupRessource(), this.player.getPlayerCastle() , this.addRessources, null, this);
+	// game.physics.arcade.collide(this.player.getPlayerUnitFoodGroupRessource(), this.player.getPlayerCastle() , this.addRessources, null, this);
 
 
 	if((this.fight != null && this.fight.isFinnish()) || (this.fightCastle != null && this.fightCastle.isFinnish())) {
@@ -134,6 +134,7 @@ HUD.prototype.moveUnitRockTowardRessources = function moveUnitRockTowardRessourc
 	} else if (sprite.isDestination && sprite.ressources === 100) {
 		if(sprite.unitClans === "player") {
 			game.physics.arcade.moveToObject(sprite, this.player.getPlayerCastle(), 60);
+			game.physics.arcade.collide(sprite, this.player.getPlayerCastle() , this.addRessources, null, this);
 
 		} else {
 			game.physics.arcade.moveToObject(sprite, this.computer.getComputerCastle(), 60);
