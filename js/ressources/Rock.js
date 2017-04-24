@@ -7,7 +7,10 @@ function Rock(game, posX, posY) {
 
 Rock.prototype.create = function create() {
 
-  	this.rockSprite = this.game.add.sprite(this.posX, this.posY, "rock", 0);
+  	this.rockSprite = this.game.add.sprite(this.posX, this.posY, "ressource_3", 0);
+		this.rockSprite.animations.add('idle', [0,1]);
+		this.rockSprite.animations.play('idle', 5, true);
+
 		this.rockSprite.enableBody = true;
 		this.game.physics.arcade.enable(this.rockSprite);
 		this.rockSprite.body.velocity.x = 0;
