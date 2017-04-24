@@ -21,11 +21,12 @@ ComputeRessources.prototype.update = function update() {
 
 
 ComputeRessources.prototype.computeRessources = function computeRessources() {
-  console.log(this.unit.ressources);
+
   if(this.unit.ressources < 100) {
     this.unit.ressources += 10;
   } else {
     this.finnish = true;
+		this.timer.stop();
   }
 };
 

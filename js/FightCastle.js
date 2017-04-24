@@ -15,13 +15,24 @@ FightCastle.prototype.create = function create() {
 
 
 FightCastle.prototype.update = function update() {
+	if (this.shakeWorld > 0)
+	{
+		var rand1 = game.rnd.integerInRange(-2,2);
+		var rand2 = game.rnd.integerInRange(-2,2);
+		game.world.setBounds(rand1, rand2, game.width + rand1, game.height + rand2);
+		this.shakeWorld--;
+	}
+
+	if (this.shakeWorld == 0) {
+		game.world.setBounds(0, 0, game.width,game.height);
+	}
 };
 
 
 FightCastle.prototype.fight = function fight() {
 
   this.castle.life -= this.unit.damage;
-
+	this.shakeWorld =2;
   if(this.castle.life <= 0) {
     this.finnish = true;
   }
