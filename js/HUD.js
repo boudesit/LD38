@@ -52,7 +52,7 @@ HUD.prototype.create = function create() {
 
 HUD.prototype.update = function update() {
   this.player.update();
-	//this.computer.update();
+	this.computer.update();
 
 	this.player.getPlayerUnitRockGroupRessource().forEach(this.moveUnitRockTowardRessources, this);
 	this.player.getPlayerUnitWaterGroupRessource().forEach(this.moveUnitWaterTowardRessources, this);
