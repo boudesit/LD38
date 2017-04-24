@@ -48,9 +48,9 @@ preload.prototype = {
      		game.load.audio('gameSound', 'assets/sound/game.mp3');
      		game.load.audio('introSound', 'assets/sound/intro.mp3');
      		game.load.audio('loseSound', 'assets/sound/loose.mp3');
+				game.load.audio('winSound', 'assets/sound/winSound.mp3');
   	   	game.load.audio('explosionSound', 'assets/sound/explodeSound.mp3');
-  	  	//game.load.audio('deathSound', 'assets/sound/sound_death.mp3');
-
+				game.load.audio('deathSound', 'assets/sound/unitedeath.mp3');
 
 	},
   	create: function(){
