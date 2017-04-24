@@ -1,39 +1,26 @@
-function Food(game) {
+function Food(game, posX, posY) {
 	this.game = game;
   this.foodSprite = null;
-  this.randomPosX = null;
+  this.posX = posX;
+	this.posY = posY;
+
 };
 
 Food.prototype.create = function create() {
 
-  this.rand = this.getRandomIntInclusive(0 , 2);
+	this.foodSprite = this.game.add.sprite(this.posX, this.posY, "food", 0);
+	this.foodSprite.enableBody = true;
+	this.game.physics.arcade.enable(this.foodSprite);
+	this.foodSprite.body.velocity.x = 0;
+	this.foodSprite.body.velocity.y = 0;
+	this.foodSprite.physicsBodyType = Phaser.Physics.ARCADE;
 
-  if( this.rand === 0 )
-  {
-    this.randomPosX = 5
-  }
-  else if(this.rand === 1 )
-  {
-    this.randomPosX = 245
-  }
-  else
-  {
-    this.randomPosX = 500
-  }
-
-
-	this.foodSprite = this.game.add.sprite(this.randomPosX, 535, "food", 0);
-
-
+	this.foodSprite.type = "Food";
 };
 
 Food.prototype.update = function update() {
-
-
 };
 
-Food.prototype.getRandomIntInclusive = function getRandomIntInclusive(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min +1)) + min;
+Food.prototype.getSprite =function getSprite() {
+	return this.foodSprite;
 }
