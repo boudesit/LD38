@@ -7,7 +7,10 @@ function Water(game, posX, posY) {
 
 Water.prototype.create = function create() {
 
-  	this.waterSprite = this.game.add.sprite(this.posX, this.posY, "water", 0);
+  	this.waterSprite = this.game.add.sprite(this.posX, this.posY, "ressource_1", 0);
+		this.waterSprite.animations.add('idle', [0,1]);
+		this.waterSprite.animations.play('idle', 5, true);
+
 		this.waterSprite.enableBody = true;
 		this.game.physics.arcade.enable(this.waterSprite);
 		this.waterSprite.body.velocity.x = 0;
