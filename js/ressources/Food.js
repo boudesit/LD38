@@ -9,11 +9,21 @@ function Food(game, posX, posY) {
 Food.prototype.create = function create() {
 
 	this.foodSprite = this.game.add.sprite(this.posX, this.posY, "food", 0);
-
+	this.foodSprite.enableBody = true;
+	this.game.physics.arcade.enable(this.foodSprite);
+	this.foodSprite.body.velocity.x = 0;
+	this.foodSprite.body.velocity.y = 0;
+	this.foodSprite.physicsBodyType = Phaser.Physics.ARCADE;
+	this.foodSprite.body.immovable = true;
+	this.foodSprite.body.moves = false;
+	this.foodSprite.type = "Food";
+	this.foodSprite.ressource = 10;
 
 };
 
 Food.prototype.update = function update() {
-
-
 };
+
+Food.prototype.getSprite =function getSprite() {
+	return this.foodSprite;
+}

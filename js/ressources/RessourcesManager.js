@@ -36,8 +36,6 @@ RessourcesManager.prototype.create = function create() {
 };
 
 RessourcesManager.prototype.update = function update() {
-
-
 };
 
 
@@ -45,4 +43,16 @@ RessourcesManager.prototype.getRandomIntInclusive = function getRandomIntInclusi
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min +1)) + min;
-}
+};
+
+RessourcesManager.prototype.getWaterSprite = function getWaterSprite() {
+	return this.water.getSprite();
+};
+
+RessourcesManager.prototype.getRockSprite = function getRockSprite() {
+	return this.rock.getSprite();
+};
+
+RessourcesManager.prototype.getFoodSprite = function getFoodSprite() {
+	return this.food.getSprite();
+};

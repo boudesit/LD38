@@ -8,10 +8,20 @@ function Water(game, posX, posY) {
 Water.prototype.create = function create() {
 
   	this.waterSprite = this.game.add.sprite(this.posX, this.posY, "water", 0);
-
+		this.waterSprite.enableBody = true;
+		this.game.physics.arcade.enable(this.waterSprite);
+		this.waterSprite.body.velocity.x = 0;
+		this.waterSprite.body.velocity.y = 0;
+		this.waterSprite.physicsBodyType = Phaser.Physics.ARCADE;
+		this.waterSprite.body.immovable = true;
+		this.waterSprite.body.moves = false;
+		this.waterSprite.type = "Water";
+		this.waterSprite.ressource = 10;
 };
 
 Water.prototype.update = function update() {
-
-
 };
+
+Water.prototype.getSprite =function getSprite() {
+	return this.waterSprite;
+}

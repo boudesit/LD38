@@ -6,6 +6,10 @@ var Player = function(game) {
 	this.rock = 100;
 	this.castle = null;
 	this.PlayerUnitGroup = null;
+	this.PlayerUnitRockGroupRessource = null;
+	this.PlayerUnitFoodGroupRessource = null;
+	this.PlayerUnitWaterGroupRessource = null;
+
 	this.text1 = null;
 	this.text2 = null;
 	this.text3 = null;
@@ -30,6 +34,12 @@ Player.prototype = {
 			game.add.button(250, 20, 'buttonArcher', this.actionOnArcher, this, 2, 1, 0);
 			game.add.button(250, 60, 'buttonWarrior', this.actionOnWarrior, this, 2, 1, 0);
 
+			game.add.button(290, 60, 'buttonUnitRock', this.actionOnUnitRock, this, 2, 1, 0);
+			game.add.button(330, 60, 'buttonUnitWater', this.actionOnUnitWater, this, 2, 1, 0);
+			game.add.button(370, 60, 'buttonUnitFood', this.actionOnUnitFood, this, 2, 1, 0);
+
+
+
 			this.castle = new Castle(game, 'player');
 			this.castle.create();
 	},
@@ -37,6 +47,10 @@ Player.prototype = {
 	update: function() {
 		this.unityManager.update();
 		this.PlayerUnitGroup = this.unityManager._getUnitGroup();
+		this.PlayerUnitRockGroupRessource = this.unityManager._getUnitRessourcesRockGroup();
+		this.PlayerUnitWaterGroupRessource = this.unityManager._getUnitRessourcesWaterGroup();
+		this.PlayerUnitFoodGroupRessource = this.unityManager._getUnitRessourcesFoodGroup();
+
 		this.text1.setText("Food : " + this.food);
 		this.text2.setText("Water : " + this.water);
 		this.text3.setText("Rock : " + this.rock);
@@ -54,6 +68,7 @@ Player.prototype = {
 
 		if(this.buy("Archer")) {
 			this.unityManager.setUnitType("Archer");
+			this.unityManager.setUnitClass(0);
 			this.unityManager.isCreate(true);
 		}
 
@@ -70,13 +85,75 @@ Player.prototype = {
 
 		if(this.buy("Warrior")) {
 			this.unityManager.setUnitType("Warrior");
+			this.unityManager.setUnitClass(0);
 			this.unityManager.isCreate(true);
 		}
 
 	},
 
+	actionOnUnitRock: function () {
+
+		if(this.nextClickOnUnit>game.time.now)
+		{
+			return;
+		} // too early
+
+		this.nextClickOnUnit = game.time.now + 1000; // wait at least 1 second (1000ms)
+
+		if(this.buy("UnitRock")) {
+			this.unityManager.setUnitType("UnitRock");
+			this.unityManager.setUnitClass(1);
+			this.unityManager.isCreate(true);
+		}
+	},
+
+	actionOnUnitWater: function () {
+
+		if(this.nextClickOnUnit>game.time.now)
+		{
+			return;
+		} // too early
+
+		this.nextClickOnUnit = game.time.now + 1000; // wait at least 1 second (1000ms)
+
+		if(this.buy("UnitRock")) {
+			this.unityManager.setUnitType("UnitWater");
+			this.unityManager.setUnitClass(1);
+			this.unityManager.isCreate(true);
+		}
+	},
+
+	actionOnUnitFood: function () {
+
+		if(this.nextClickOnUnit>game.time.now)
+		{
+			return;
+		} // too early
+
+		this.nextClickOnUnit = game.time.now + 1000; // wait at least 1 second (1000ms)
+
+		if(this.buy("UnitRock")) {
+			this.unityManager.setUnitType("UnitFood");
+			this.unityManager.setUnitClass(1);
+			this.unityManager.isCreate(true);
+		}
+	},
+
+
 	getPlayerUnitGroup: function() {
 		return this.PlayerUnitGroup;
+	},
+
+	getPlayerUnitRockGroupRessource: function() {
+		return this.PlayerUnitRockGroupRessource;
+	},
+
+	getPlayerUnitWaterGroupRessource: function() {
+		return this.PlayerUnitWaterGroupRessource;
+	},
+
+	getPlayerUnitFoodGroupRessource: function() {
+		return this.PlayerUnitFoodGroupRessource;
 	},
 
 	getPlayerCastle: function() {
@@ -101,7 +178,28 @@ Player.prototype = {
 			this.rock -= 10;
 			isbuy = true;
 		}
+
+		// For Warrior
+		if(this.food >= 10 && this.water >= 10 && this.rock >= 10 && type === "UnitRock") {
+			this.food -= 10;
+			this.water -= 10;
+			this.rock -= 10;
+			isbuy = true;
+		}
 		return isbuy;
 
+	},
+
+	setRock: function(rock) {
+		this.rock+= rock;
+	},
+
+	setWater: function(water) {
+		this.water+= water;
+	},
+
+	setFood: function(food) {
+		this.food+= food;
 	}
+
 }
